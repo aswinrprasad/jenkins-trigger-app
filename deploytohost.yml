@@ -1,4 +1,4 @@
-- hosts: hostservers
+- hosts: dockerserver
   become: yes
   become_method: sudo
   remote_user: aswinrprasad
