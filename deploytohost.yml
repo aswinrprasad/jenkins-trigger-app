@@ -48,7 +48,7 @@
       docker_container:
         name: jenkins-trigger-app
         image: aswinrprasad/jenkins-trigger-web
-        state: reloaded
+        state: present
         pull: true
         ports:
         - "80:3000"
