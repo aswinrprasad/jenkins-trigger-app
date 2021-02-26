@@ -49,7 +49,7 @@
         name: jenkins-trigger-app
         image: aswinrprasad/jenkins-trigger-web
         state: reloaded
-        pull: always
+        pull: true
         ports:
         - "80:3000"
     
