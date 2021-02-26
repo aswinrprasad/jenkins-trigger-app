@@ -2,19 +2,25 @@ pipeline {
     agent any
 
     stages{
-        steps('Git Checkout'){
-            checkout scm
+        stage('Start'){
+            steps{
+                checkout scm
+            }
         }
-        steps('Docker Image Build & Push')
-            docker.withRegistry('https://registry.hub.docker.com', 'dockeHub') {
+        stage('Docker Image Build & Push')
+            steps{
+                docker.withRegistry('https://registry.hub.docker.com', 'dockeHub') {
 
-            def customImage = docker.build("aswinrprasad/jenkins-trigger-web:${env.BUILD_ID}")
+                def customImage = docker.build("aswinrprasad/jenkins-trigger-web:${env.BUILD_ID}")
 
-            /* Push the container to the custom Registry */
-            customImage.push()
+                /* Push the container to the custom Registry */
+                customImage.push()
+            }
         }
-        steps('Complete'){
-            sh "echo 'Build Successful'"
+        stage('Complete'){
+            steps{
+                sh "echo 'Build Successful'"
+            }
         }
     }
 }
