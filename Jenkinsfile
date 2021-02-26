@@ -6,7 +6,7 @@ node {
     stage('Docker Image Build & Push'){
         docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
 
-            def customImage = docker.build("aswinrprasad/jenkins-trigger-web:${env.BUILD_ID}")
+            def customImage = docker.build("aswinrprasad/jenkins-trigger-web")
 
             /* Push the container to the custom Registry */
             customImage.push()
