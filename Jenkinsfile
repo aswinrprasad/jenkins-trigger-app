@@ -14,7 +14,7 @@ node {
     // }
     stage('Deploy'){
 
-        sh "ansible-playbook deploytohost.yml"
+        sh "ansible-playbook deploytohost.yml --host_key_checking=false"
     }
     stage('Complete'){
 
