@@ -1,24 +1,19 @@
 node {
 
     stage('Start'){
-        steps{
-            checkout scm
-        }
+        checkout scm
     }
     stage('Docker Image Build & Push'){
-        steps{
-            docker.withRegistry('https://registry.hub.docker.com', 'dockeHub') {
+        docker.withRegistry('https://registry.hub.docker.com', 'dockeHub') {
 
-                def customImage = docker.build("aswinrprasad/jenkins-trigger-web:${env.BUILD_ID}")
+            def customImage = docker.build("aswinrprasad/jenkins-trigger-web:${env.BUILD_ID}")
 
-                /* Push the container to the custom Registry */
-                customImage.push()
-            }
+            /* Push the container to the custom Registry */
+            customImage.push()
         }
     }
     stage('Complete'){
-        steps{
-            sh "echo 'Build Successful'"
-        }
+
+        sh "echo 'Build Successful'"
     }
 }
