@@ -21,7 +21,7 @@
         proto: tcp
     
     - name: Adding to sources list 
-      command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      sh: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
     
     - name : Update Sources List
       command: apt-get update
