@@ -44,12 +44,16 @@
         name: docker
         state: started
     
+    - name: Pull default Docker image
+      docker_image:
+        name: "aswinrprasad/jenkins-trigger-web"
+        source: pull
+    
     - name: Pull the React App from dockerhub and run it in port 80
       docker_container:
         name: jenkins-trigger-app
         image: aswinrprasad/jenkins-trigger-web
         state: present
-        pull: true
         ports:
         - "80:3000"
     
