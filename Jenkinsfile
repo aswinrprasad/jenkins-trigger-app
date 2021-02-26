@@ -1,10 +1,12 @@
-node {
+pipeline {
+    agent any
+    
     stages{
         stage('Git Checkout'){
             checkout scm
         }
         stage('Docker Image Build & Push')
-            docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
+            docker.withRegistry('https://registry.hub.docker.com', 'dockeHub') {
 
             def customImage = docker.build("aswinrprasad/jenkins-trigger-web:${env.BUILD_ID}")
 
