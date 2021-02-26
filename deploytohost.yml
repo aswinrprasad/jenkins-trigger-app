@@ -11,7 +11,7 @@
     - name: Allow port 8080 
       ufw:
         rule: allow 
-        port: 8080
+        port: 80
         proto: tcp
 
     - name: Allow port 22
@@ -38,7 +38,12 @@
       name: docker
       state: started
 
-  - name: Pull the React App from dockerhub
-    docker_image:
-      name: aswinrprasad/jenkins-trigger-web
+  - name: Pull the React App from dockerhub and run it in port 80
+    docker:
+      name: jenkins-trigger-app
+      image: aswinrprasad/jenkins-trigger-web
+      state: reloaded
+      pull: always
+      ports:
+      - "80:3000"
   
