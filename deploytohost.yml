@@ -48,6 +48,13 @@
         name: docker
         state: started
     
+    - name: Remove Docker image to clean up
+      docker_image:
+        name: "aswinrprasad/jenkins-trigger-web"
+        tag: latest
+        force: true
+        state: absent 
+
     - name: Pull default Docker image
       docker_image:
         name: "aswinrprasad/jenkins-trigger-web"
