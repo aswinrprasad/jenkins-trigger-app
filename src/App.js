@@ -22,12 +22,10 @@ function App() {
   jobs [{
     name: "Some name",
     description: "Some description"
-    url: "url of the job"
   }, 
   {
     name: "Some name",
     description: "Some description"
-    url: "url of the job"
   }, ...]
   */
   const [jobs, setJob] = useState([])
@@ -36,7 +34,7 @@ function App() {
   useEffect(() => {
 
     // axios package is used to fetch jenkins job details from jenkins rest api end point
-    axios.get("http://192.168.18.139:8080/api/json?tree=jobs[name,description,url]",
+    axios.get("http://" + process.env.REACT_APP_JENKINS + ":8080/api/json?tree=jobs[name,description]",
       {
         // Basic HTTP Authentication done with auth property of axios
         auth: {
@@ -54,15 +52,16 @@ function App() {
 
   // the image array conatains all the imoported image of four staff members
   const imageArr = [aswinImage, amarImage, priyankaImage, sandhyaImage]
-  let i=0
+  let i = 0
   // looping through the array and dynamically setting UserJob component with properties from jobs array
-  const userJobComp = jobs.slice(0,4).map((job) =>
-    <div key={job.name} className="col-3"><UserJob profileImage={imageArr[i++]}
+  const userJobComp = jobs.slice(0, 4).map((job) => {
+    const url = `http://0.0.0.0:8080/job/${job.name}/build`
+    return <div key={job.name} className="col-md-3" align="center"><UserJob profileImage={imageArr[i++]}
       jobname={job.name}
       jobdesc={job.description}
-      endpoint_url={job.url} />
+      endpoint_url={url} />
     </div>
-  )
+  })
   return (
     <div className="main">
       <Navbar />

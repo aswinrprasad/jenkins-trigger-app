@@ -13,7 +13,7 @@ function UserJob({ profileImage, jobname, jobdesc, endpoint_url }) {
     const handleClick = () => {
 
         // endpoint_url is dynamically passed in as property from App.js to UserJob.js
-        axios.post(endpoint_url+"/build", {},
+        axios.post(endpoint_url, {},
             {
                 auth: {
                     username: "aswinrprasad",
@@ -35,12 +35,13 @@ function UserJob({ profileImage, jobname, jobdesc, endpoint_url }) {
             <img className="card-img-top" src={profileImage} alt=""></img>
             <div className="card-body">
                 <h5 className="card-title">{jobname}</h5>
-                <div className="card-text">
+                <hr/>
+                <div className="card-text" style={{fontSize: "15px", color:"rgb(77,77,77)"}}>
                     <div className="jobdesc">{jobdesc}</div> <br /><hr />
-                    <button type="button" className="btn btn-lg btn-info" onClick={handleClick}>Build Now</button>
+                    <button type="button" className="btn btn-md btn-info" onClick={handleClick}>Build Now</button>
                 </div>
                 <hr />
-                <div className="card-text" style={{fontSize: "15px", color:"darkgray"}}>Build Trigger Status : {displayMessage}</div>
+                <div className="card-text" style={{fontSize: "15px", color:"darkgray"}}>Build Trigger <br/>Latest Status : {displayMessage}</div>
             </div>
         </div>
     )
