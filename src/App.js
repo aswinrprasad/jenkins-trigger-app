@@ -55,7 +55,7 @@ function App() {
   let i = 0
   // looping through the array and dynamically setting UserJob component with properties from jobs array
   const userJobComp = jobs.slice(0, 4).map((job) => {
-    const url = `http://0.0.0.0:8080/job/${job.name}/build`
+    const url = `http://${process.env.REACT_APP_JENKINS}:8080/job/${job.name}/build`
     return <div key={job.name} className="col-md-3" align="center"><UserJob profileImage={imageArr[i++]}
       jobname={job.name}
       jobdesc={job.description}
