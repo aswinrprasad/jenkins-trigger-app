@@ -16,8 +16,8 @@ function UserJob({ profileImage, jobname, jobdesc, endpoint_url }) {
         axios.post(endpoint_url, {},
             {
                 auth: {
-                    username: "aswinrprasad",
-                    password: "11ffc06e2cc9962d0b57d41551132a8256"
+                    username:process.env.REACT_APP_JENKINS_UNAME,
+                    password: process.env.REACT_APP_JENKINS_PASS
                 }
             })
             .then(() => {
