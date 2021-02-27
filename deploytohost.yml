@@ -52,6 +52,7 @@
       docker_image:
         name: "aswinrprasad/jenkins-trigger-web"
         source: pull
+        state: present
     
     - name: Create the react app container
       docker_container:
